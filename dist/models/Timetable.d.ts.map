@@ -1,0 +1,1 @@
+{"version":3,"file":"Timetable.d.ts","sourceRoot":"","sources":["../../src/models/Timetable.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,EAAE,EAAU,QAAQ,EAAE,MAAM,UAAU,CAAC;AAEtD,MAAM,WAAW,UAAW,SAAQ,QAAQ;IAC1C,OAAO,EAAE,MAAM,CAAC;IAChB,GAAG,EAAE,MAAM,CAAC;IACZ,SAAS,EAAE,MAAM,CAAC;IAClB,OAAO,EAAE,MAAM,CAAC;CACjB;;;;;;AASD,wBAAwE"}
