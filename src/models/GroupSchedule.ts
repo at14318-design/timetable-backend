@@ -1,25 +1,32 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface ITimetable extends Document {
-  userId: mongoose.Types.ObjectId;
-  subject: string;
+export interface IGroupSchedule extends Document {
+  groupId: mongoose.Types.ObjectId;
+  title: string;
+  description?: string;
   day: string;
   startTime: string;
   endTime: string;
+  createdBy: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
 
-const TimetableSchema: Schema = new Schema(
+const GroupScheduleSchema: Schema = new Schema(
   {
-    userId: {
+    groupId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Group",
       required: true,
     },
-    subject: {
+    title: {
       type: String,
       required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      trim: true,
     },
     day: {
       type: String,
@@ -42,8 +49,16 @@ const TimetableSchema: Schema = new Schema(
       type: String,
       required: true,
     },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-export default mongoose.model<ITimetable>("Timetable", TimetableSchema);
+export default mongoose.model<IGroupSchedule>(
+  "GroupSchedule",
+  GroupScheduleSchema
+);
