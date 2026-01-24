@@ -6,6 +6,7 @@ import timetableRoutes from "./routes/timetable.js";
 import authRoutes from "./routes/auth.js";
 import groupRoutes from "./routes/groups.js";
 import groupScheduleRoutes from "./routes/groupSchedules.js";
+import aiRoutes from "./routes/ai.js";
 
 dotenv.config();
 connectDB();
@@ -14,6 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/ai", aiRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/timetable", timetableRoutes);
 app.use("/api/groups", groupRoutes);
