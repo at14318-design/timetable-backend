@@ -6,6 +6,7 @@ export interface ITimetable extends Document {
   day: string;
   startTime: string;
   endTime: string;
+  reminder?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -42,8 +43,12 @@ const TimetableSchema: Schema = new Schema(
       type: String,
       required: true,
     },
+    reminder: {
+      type: Boolean,
+      default: false,
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model<ITimetable>("Timetable", TimetableSchema);

@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth.js";
 import groupRoutes from "./routes/groups.js";
 import groupScheduleRoutes from "./routes/groupSchedules.js";
 import aiRoutes from "./routes/ai.js";
+import startScheduler from "./routes/scheduler.js";
 
 dotenv.config();
 connectDB();
@@ -21,7 +22,9 @@ app.use("/api/timetable", timetableRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/schedules", groupScheduleRoutes);
 
+startScheduler();
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
+  console.log(`Server running on http://localhost:${PORT}`),
 );

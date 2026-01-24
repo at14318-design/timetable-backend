@@ -53,7 +53,7 @@ router.get("/:userId", verifyToken, async (req: Request, res: Response) => {
 // POST new timetable entry
 router.post("/", verifyToken, async (req: Request, res: Response) => {
   try {
-    const { subject, day, startTime, endTime } = req.body;
+    const { subject, day, startTime, endTime, reminder } = req.body;
     const userId = (req as any).userId;
 
     if (!subject || !day || !startTime || !endTime) {
@@ -67,6 +67,7 @@ router.post("/", verifyToken, async (req: Request, res: Response) => {
       day,
       startTime,
       endTime,
+      reminder: !!reminder,
     });
 
     await newEntry.save();
@@ -80,7 +81,7 @@ router.post("/", verifyToken, async (req: Request, res: Response) => {
 router.put("/:entryId", verifyToken, async (req: Request, res: Response) => {
   try {
     const { entryId } = req.params;
-    const { subject, day, startTime, endTime } = req.body;
+    const { subject, day, startTime, endTime, reminder } = req.body;
     const userId = (req as any).userId;
 
     const entry = await Timetable.findById(entryId);
@@ -100,6 +101,7 @@ router.put("/:entryId", verifyToken, async (req: Request, res: Response) => {
     if (day) entry.day = day;
     if (startTime) entry.startTime = startTime;
     if (endTime) entry.endTime = endTime;
+    if (reminder !== undefined) entry.reminder = reminder;
 
     await entry.save();
     res.status(200).json(entry);
